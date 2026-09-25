@@ -1,0 +1,74 @@
+cmake_minimum_required(VERSION 3.26)
+project(fintech_core_reconciliation VERSION 0.1.0 LANGUAGES CXX)
+
+enable_testing()
+include(CMakePackageConfigHelpers)
+
+if(NOT DEFINED FINTECH_STANDALONE_PACKAGE_PREFIX OR
+   NOT IS_ABSOLUTE "${FINTECH_STANDALONE_PACKAGE_PREFIX}")
+  message(FATAL_ERROR "core-reconciliation: absolute installed-package prefix is required")
+endif()
+
+find_package(fintech_contracts 0.1.0 CONFIG REQUIRED
+  PATHS "${FINTECH_STANDALONE_PACKAGE_PREFIX}" NO_DEFAULT_PATH)
+
+add_library(fintech_core_reconciliation INTERFACE)
+add_library(fintech::core_reconciliation ALIAS fintech_core_reconciliation)
+set_target_properties(fintech_core_reconciliation PROPERTIES
+  EXPORT_NAME core_reconciliation)
+target_compile_features(fintech_core_reconciliation INTERFACE cxx_std_23)
+target_include_directories(fintech_core_reconciliation INTERFACE
+  "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
+  "$<INSTALL_INTERFACE:include>")
+target_link_libraries(fintech_core_reconciliation INTERFACE fintech::contracts)
+
+add_executable(reconciliation_contract_tests tests/reconciliation_contract_tests.cpp)
+target_link_libraries(reconciliation_contract_tests PRIVATE fintech_core_reconciliation)
+add_test(NAME reconciliation_contract COMMAND reconciliation_contract_tests)
+
+add_executable(reconciliation_owner_tests tests/reconciliation_owner_tests.cpp)
+target_link_libraries(reconciliation_owner_tests PRIVATE fintech_core_reconciliation)
+add_test(NAME reconciliation_owner COMMAND reconciliation_owner_tests)
+
+add_executable(reconciliation_recovery_tests tests/reconciliation_recovery_tests.cpp)
+target_link_libraries(reconciliation_recovery_tests PRIVATE fintech_core_reconciliation)
+add_test(NAME reconciliation_recovery COMMAND reconciliation_recovery_tests)
+
+install(TARGETS fintech_core_reconciliation EXPORT fintech_core_reconciliationTargets)
+install(DIRECTORY include/ DESTINATION include)
+install(FILES
+  include/fintech/reconciliation/contracts.hpp
+  include/fintech/reconciliation/owner.hpp
+  DESTINATION share/fintech/integration-composition/include/fintech/reconciliation)
+install(FILES
+  tests/reconciliation_contract_tests.cpp
+  tests/reconciliation_owner_tests.cpp
+  tests/reconciliation_recovery_tests.cpp
+  DESTINATION share/fintech/integration-composition/tests/core-reconciliation)
+install(TARGETS
+  reconciliation_contract_tests
+  reconciliation_owner_tests
+  reconciliation_recovery_tests
+  RUNTIME DESTINATION bin)
+install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/ci/package-capability-manifest.json"
+  DESTINATION share/fintech/manifests RENAME core-reconciliation.json)
+install(EXPORT fintech_core_reconciliationTargets
+  FILE fintech_core_reconciliationTargets.cmake
+  NAMESPACE fintech::
+  DESTINATION lib/cmake/fintech_core_reconciliation)
+file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/fintech_core_reconciliationConfig.cmake" [=[
+include(CMakeFindDependencyMacro)
+get_filename_component(_prefix "${CMAKE_CURRENT_LIST_DIR}/../../.." ABSOLUTE)
+find_dependency(fintech_contracts 0.1.0 CONFIG REQUIRED
+  PATHS "${_prefix}" NO_DEFAULT_PATH)
+set(fintech_core_reconciliation_PACKAGE_ID "core-reconciliation")
+set(fintech_core_reconciliation_VERSION "0.1.0")
+include("${CMAKE_CURRENT_LIST_DIR}/fintech_core_reconciliationTargets.cmake")
+]=])
+write_basic_package_version_file(
+  "${CMAKE_CURRENT_BINARY_DIR}/fintech_core_reconciliationConfigVersion.cmake"
+  VERSION 0.1.0 COMPATIBILITY SameMinorVersion)
+install(FILES
+  "${CMAKE_CURRENT_BINARY_DIR}/fintech_core_reconciliationConfig.cmake"
+  "${CMAKE_CURRENT_BINARY_DIR}/fintech_core_reconciliationConfigVersion.cmake"
+  DESTINATION lib/cmake/fintech_core_reconciliation)

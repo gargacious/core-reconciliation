@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "repository": "core-reconciliation",
+  "kind": "leaf",
+  "owner_role": "role:participant-reconciliation-maintainers",
+  "purpose": "Independent economic evidence cursors, deduplication, conflicts and completeness watermarks.",
+  "source_roots": ["core-reconciliation"],
+  "public_include_root": "core-reconciliation/include/fintech/reconciliation",
+  "namespace": "fintech::reconciliation",
+  "dependencies": ["trading-contracts", "trading-platform-sdk"],
+  "allowed_future_dependencies": [],
+  "commands": {
+    "configure": "cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DFINTECH_STANDALONE_PACKAGE_PREFIX=/absolute/package-prefix",
+    "build": "cmake --build build -j4",
+    "focused_build": "cmake --build build --target reconciliation_owner_tests reconciliation_recovery_tests -j4",
+    "focused_test": "ctest --test-dir build --output-on-failure -R '^(reconciliation_owner|reconciliation_recovery)$'",
+    "full_test": "ctest --test-dir build --output-on-failure",
+    "install": "cmake --install build --prefix /absolute/package-prefix",
+    "owned_default_tests": "ctest --test-dir build --output-on-failure -R '^(reconciliation_contract|reconciliation_owner|reconciliation_recovery)$'"
+  },
+  "focused_ci": {
+    "build_targets": ["reconciliation_owner_tests", "reconciliation_recovery_tests"],
+    "test_regex": "^(reconciliation_owner|reconciliation_recovery)$"
+  },
+  "package": {
+    "version": "0.1.0",
+    "cmake_package": "fintech_core_reconciliation",
+    "api_roots": ["core-reconciliation/include/fintech/reconciliation"]
+  },
+  "cmake_targets": ["fintech::core_reconciliation"],
+  "executables": [
+    {
+      "target": "reconciliation_contract_tests",
+      "build_command": "cmake --build build --target reconciliation_contract_tests -j4",
+      "sources": ["tests/reconciliation_contract_tests.cpp"]
+    },
+    {
+      "target": "reconciliation_owner_tests",
+      "build_command": "cmake --build build --target reconciliation_owner_tests -j4",
+      "sources": ["tests/reconciliation_owner_tests.cpp"]
+    },
+    {
+      "target": "reconciliation_recovery_tests",
+      "build_command": "cmake --build build --target reconciliation_recovery_tests -j4",
+      "sources": ["tests/reconciliation_recovery_tests.cpp"]
+    }
+  ],
+  "python_entrypoints": [],
+  "test_custody": {
+    "static": ["reconciliation_contract", "reconciliation_owner", "reconciliation_recovery"],
+    "configured_default": ["reconciliation_contract", "reconciliation_owner", "reconciliation_recovery"],
+    "release_only": [],
+    "optional_default_off": [],
+    "b1_integration_governance": [],
+    "counts": {"static": 3, "configured_default": 3, "release_only": 0, "optional_default_off": 0},
+    "configured_default_command": "ctest --test-dir build --output-on-failure -R '^(reconciliation_contract|reconciliation_owner|reconciliation_recovery)$'"
+  },
+  "build_graph": {
+    "configured_owned_targets": ["reconciliation_contract_tests", "reconciliation_owner_tests", "reconciliation_recovery_tests"],
+    "declared_unconfigured_owned_targets": [],
+    "first_dependency_tier_cpp_tests": [],
+    "public_package_tier_cpp_tests": ["reconciliation_contract", "reconciliation_owner", "reconciliation_recovery"],
+    "pending_public_package_cpp_tests": [],
+    "pending_private_package_cpp_tests": [],
+    "pending_cross_owner_resource_cpp_tests": [],
+    "pending_unconfigured_cpp_tests": [],
+    "cross_repository_cpp_tests": []
+  },
+  "resources": [
+    "core-reconciliation/include/fintech/reconciliation/contracts.hpp",
+    "core-reconciliation/include/fintech/reconciliation/owner.hpp"
+  ],
+  "requirements": ["P-GATE-001", "P-RECON-001"],
+  "limitations": [
+    "Repository-local qualification covers bounded in-memory reconciliation, not a durable production service or live clearing connection.",
+    "No hosted repository, production deployment, external security assessment or operational certification is claimed."
+  ],
+  "global_authority": [],
+  "owns_product_code": true
+}
