@@ -8,10 +8,11 @@
   },
   "contract": {
     "id": "core-reconciliation.public-package",
-    "revision": 1
+    "revision": 2
   },
   "artifacts": [
     {"kind": "executable", "logical_id": "executable:reconciliation_contract_tests", "path": "bin/reconciliation_contract_tests"},
+    {"kind": "executable", "logical_id": "executable:reconciliation_causal_support_tests", "path": "bin/reconciliation_causal_support_tests"},
     {"kind": "executable", "logical_id": "executable:reconciliation_owner_tests", "path": "bin/reconciliation_owner_tests"},
     {"kind": "executable", "logical_id": "executable:reconciliation_recovery_tests", "path": "bin/reconciliation_recovery_tests"}
   ],
@@ -24,6 +25,12 @@
     },
     {
       "kind": "integration-composition-resource",
+      "logical_id": "composition:include/fintech/reconciliation/causal_support.hpp",
+      "path": "share/fintech/integration-composition/include/fintech/reconciliation/causal_support.hpp",
+      "sha256": "4288dc77237733261d7a9da34f6e0ac0bb8309a2249e0286c36a52a724becce8"
+    },
+    {
+      "kind": "integration-composition-resource",
       "logical_id": "composition:include/fintech/reconciliation/owner.hpp",
       "path": "share/fintech/integration-composition/include/fintech/reconciliation/owner.hpp",
       "sha256": "f91594e4b83395ed46549b9891453c5f7f38d270c19553ea09c1c71ce4cdd200"
@@ -33,6 +40,12 @@
       "logical_id": "composition:tests/core-reconciliation/reconciliation_contract_tests.cpp",
       "path": "share/fintech/integration-composition/tests/core-reconciliation/reconciliation_contract_tests.cpp",
       "sha256": "a68cada868191bc2bdca0675fe4cc17255c2d331c59864476c41e1e3ebe0d3cd"
+    },
+    {
+      "kind": "integration-composition-resource",
+      "logical_id": "composition:tests/core-reconciliation/reconciliation_causal_support_tests.cpp",
+      "path": "share/fintech/integration-composition/tests/core-reconciliation/reconciliation_causal_support_tests.cpp",
+      "sha256": "b1561deeba2192c7804938e43637fecf8c94d76ac24fdea06d75b7957733c8f1"
     },
     {
       "kind": "integration-composition-resource",

@@ -11,6 +11,16 @@ endif()
 
 find_package(fintech_contracts 0.1.0 CONFIG REQUIRED
   PATHS "${FINTECH_STANDALONE_PACKAGE_PREFIX}" NO_DEFAULT_PATH)
+if(NOT fintech_contracts_PACKAGE_ID STREQUAL "trading-contracts" OR
+   NOT TARGET fintech::contracts)
+  message(FATAL_ERROR "core-reconciliation: incompatible trading-contracts package")
+endif()
+find_package(fintech_platform_sdk 0.1.0 CONFIG REQUIRED
+  PATHS "${FINTECH_STANDALONE_PACKAGE_PREFIX}" NO_DEFAULT_PATH)
+if(NOT fintech_platform_sdk_PACKAGE_ID STREQUAL "trading-platform-sdk" OR
+   NOT TARGET fintech::core)
+  message(FATAL_ERROR "core-reconciliation: incompatible trading-platform-sdk package")
+endif()
 
 add_library(fintech_core_reconciliation INTERFACE)
 add_library(fintech::core_reconciliation ALIAS fintech_core_reconciliation)
@@ -20,7 +30,8 @@ target_compile_features(fintech_core_reconciliation INTERFACE cxx_std_23)
 target_include_directories(fintech_core_reconciliation INTERFACE
   "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
   "$<INSTALL_INTERFACE:include>")
-target_link_libraries(fintech_core_reconciliation INTERFACE fintech::contracts)
+target_link_libraries(fintech_core_reconciliation INTERFACE
+  fintech::contracts fintech::core)
 
 add_executable(reconciliation_contract_tests tests/reconciliation_contract_tests.cpp)
 target_link_libraries(reconciliation_contract_tests PRIVATE fintech_core_reconciliation)
@@ -34,19 +45,29 @@ add_executable(reconciliation_recovery_tests tests/reconciliation_recovery_tests
 target_link_libraries(reconciliation_recovery_tests PRIVATE fintech_core_reconciliation)
 add_test(NAME reconciliation_recovery COMMAND reconciliation_recovery_tests)
 
+add_executable(reconciliation_causal_support_tests
+  tests/reconciliation_causal_support_tests.cpp)
+target_link_libraries(reconciliation_causal_support_tests
+  PRIVATE fintech_core_reconciliation)
+add_test(NAME reconciliation_causal_support
+  COMMAND reconciliation_causal_support_tests)
+
 install(TARGETS fintech_core_reconciliation EXPORT fintech_core_reconciliationTargets)
 install(DIRECTORY include/ DESTINATION include)
 install(FILES
   include/fintech/reconciliation/contracts.hpp
+  include/fintech/reconciliation/causal_support.hpp
   include/fintech/reconciliation/owner.hpp
   DESTINATION share/fintech/integration-composition/include/fintech/reconciliation)
 install(FILES
   tests/reconciliation_contract_tests.cpp
+  tests/reconciliation_causal_support_tests.cpp
   tests/reconciliation_owner_tests.cpp
   tests/reconciliation_recovery_tests.cpp
   DESTINATION share/fintech/integration-composition/tests/core-reconciliation)
 install(TARGETS
   reconciliation_contract_tests
+  reconciliation_causal_support_tests
   reconciliation_owner_tests
   reconciliation_recovery_tests
   RUNTIME DESTINATION bin)
@@ -61,8 +82,39 @@ include(CMakeFindDependencyMacro)
 get_filename_component(_prefix "${CMAKE_CURRENT_LIST_DIR}/../../.." ABSOLUTE)
 find_dependency(fintech_contracts 0.1.0 CONFIG REQUIRED
   PATHS "${_prefix}" NO_DEFAULT_PATH)
+find_dependency(fintech_platform_sdk 0.1.0 CONFIG REQUIRED
+  PATHS "${_prefix}" NO_DEFAULT_PATH)
 set(fintech_core_reconciliation_PACKAGE_ID "core-reconciliation")
 set(fintech_core_reconciliation_VERSION "0.1.0")
+set(fintech_core_reconciliation_CONTRACT_ID "core-reconciliation.public-package")
+set(fintech_core_reconciliation_CONTRACT_REVISION "2")
+set(fintech_core_reconciliation_PACKAGE_MANIFEST
+  "${_prefix}/share/fintech/manifests/core-reconciliation.json")
+if(NOT EXISTS "${fintech_core_reconciliation_PACKAGE_MANIFEST}")
+  message(FATAL_ERROR "core-reconciliation: installed package manifest is missing")
+endif()
+file(READ "${fintech_core_reconciliation_PACKAGE_MANIFEST}" _manifest)
+foreach(_required
+    "fintech-package-capability-manifest-v1"
+    "\"id\": \"core-reconciliation\""
+    "\"id\": \"core-reconciliation.public-package\""
+    "\"revision\": 2")
+  string(FIND "${_manifest}" "${_required}" _found)
+  if(_found EQUAL -1)
+    message(FATAL_ERROR
+      "core-reconciliation: installed package manifest is incompatible: ${_required}")
+  endif()
+endforeach()
+foreach(_required_path
+    "${_prefix}/include/fintech/reconciliation/contracts.hpp"
+    "${_prefix}/include/fintech/reconciliation/causal_support.hpp"
+    "${_prefix}/include/fintech/reconciliation/owner.hpp"
+    "${_prefix}/bin/reconciliation_causal_support_tests")
+  if(NOT EXISTS "${_required_path}")
+    message(FATAL_ERROR
+      "core-reconciliation: required installed artifact is missing: ${_required_path}")
+  endif()
+endforeach()
 include("${CMAKE_CURRENT_LIST_DIR}/fintech_core_reconciliationTargets.cmake")
 ]=])
 write_basic_package_version_file(
