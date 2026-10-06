@@ -1,6 +1,17 @@
 #include <array>
 #include <cstdlib>
+#include <type_traits>
 #include <fintech/reconciliation/fmi_reconciliation_owner.hpp>
+
+static_assert(fintech::domain::fmi_authorization_contract_revision == 2U);
+static_assert(std::is_same_v<
+              decltype(fintech::reconciliation::FmiScopeRegistration{}
+                           .asset_class),
+              fintech::domain::FmiAssetClass>);
+static_assert(std::is_same_v<
+              decltype(fintech::reconciliation::FmiTolerancePolicy{}
+                           .asset_class),
+              fintech::domain::FmiAssetClass>);
 
 namespace {
 
@@ -40,7 +51,7 @@ FmiScopeRegistration scope(std::uint64_t id) {
          core::AccountId{static_cast<std::uint32_t>(id + 300U)},
          core::InstrumentId{static_cast<std::uint32_t>(id + 400U)},
          20261006U},
-        domain::AssetClass::Equity,
+        domain::FmiAssetClass::Equity,
         domain::ProductId{1U},
         domain::JurisdictionId{91U},
         usd,
@@ -61,7 +72,7 @@ FmiTolerancePolicy policy(std::uint64_t provider,
     return {
         FmiTolerancePolicyId{provider},
         domain::OrganizationId{provider},
-        domain::AssetClass::Equity,
+        domain::FmiAssetClass::Equity,
         domain::ProductId{1U},
         domain::JurisdictionId{91U},
         usd,

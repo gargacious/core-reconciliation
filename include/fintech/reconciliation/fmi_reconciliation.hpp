@@ -14,6 +14,9 @@ namespace fintech::reconciliation {
 inline constexpr std::string_view fmi_reconciliation_contract_id{
     "core-reconciliation.fmi-reconciliation"};
 inline constexpr std::uint16_t fmi_reconciliation_contract_revision = 1U;
+static_assert(domain::fmi_authorization_contract_id ==
+              "fintech.contracts.fmi-authorization");
+static_assert(domain::fmi_authorization_contract_revision == 2U);
 
 struct FmiReconciliationScopeTag;
 struct FmiTolerancePolicyTag;
@@ -116,7 +119,7 @@ struct FmiReconciliationKey final {
 struct FmiScopeRegistration final {
     FmiReconciliationScopeId scope{};
     FmiReconciliationKey key{};
-    domain::AssetClass asset_class{domain::AssetClass::Equity};
+    domain::FmiAssetClass asset_class{domain::FmiAssetClass::Equity};
     domain::ProductId product{};
     domain::JurisdictionId jurisdiction{};
     core::CurrencyCode currency{};
@@ -137,7 +140,7 @@ struct FmiScopeRegistration final {
 struct FmiTolerancePolicy final {
     FmiTolerancePolicyId policy{};
     domain::OrganizationId provider{};
-    domain::AssetClass asset_class{domain::AssetClass::Equity};
+    domain::FmiAssetClass asset_class{domain::FmiAssetClass::Equity};
     domain::ProductId product{};
     domain::JurisdictionId jurisdiction{};
     core::CurrencyCode currency{};
@@ -264,8 +267,8 @@ struct FmiReconciliationResult final {
         1U);
     return value.scope.valid() && valid(value.key) && value.product.valid() &&
            value.jurisdiction.valid() && value.currency.valid() &&
-           value.asset_class >= domain::AssetClass::Equity &&
-           value.asset_class <= domain::AssetClass::DigitalAsset &&
+           value.asset_class >= domain::FmiAssetClass::Equity &&
+           value.asset_class <= domain::FmiAssetClass::DigitalAsset &&
            value.quantity_unit <= core::QuantityUnit::Fractional &&
            value.required_roles != 0U &&
            (value.required_roles & ~all_roles) == 0U &&
@@ -283,8 +286,8 @@ struct FmiReconciliationResult final {
     return value.policy.valid() && value.provider.valid() &&
            value.product.valid() && value.jurisdiction.valid() &&
            value.currency.valid() &&
-           value.asset_class >= domain::AssetClass::Equity &&
-           value.asset_class <= domain::AssetClass::DigitalAsset &&
+           value.asset_class >= domain::FmiAssetClass::Equity &&
+           value.asset_class <= domain::FmiAssetClass::DigitalAsset &&
            value.quantity_unit <= core::QuantityUnit::Fractional &&
            value.quantity_scale <= core::maximum_decimal_scale &&
            value.cash_scale <= core::maximum_decimal_scale &&

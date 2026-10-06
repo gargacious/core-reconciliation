@@ -26,3 +26,11 @@ generation, sequence domain, journal position, authorization and payload
 digest. Exact provider/asset/currency/jurisdiction tolerance policy is required.
 A missing or inconsistent fact opens a versioned exception case; maker/checker
 resolution governs that case and cannot edit any source owner's economic fact.
+FMI scope and tolerance records use the authorization contract's
+`FmiAssetClass`; the distinct static-instrument-metadata `AssetClass` is not
+redeclared or reinterpreted here.
+
+Package 0.1.2 publishes `core-reconciliation.public-package` revision 4 and
+retains `core-reconciliation.fmi-reconciliation` revision 1. It requires
+`trading-contracts` 0.1.1/public revision 1 with
+`fintech.contracts.fmi-authorization` revision 2.

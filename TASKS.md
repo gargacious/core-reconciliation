@@ -1,5 +1,16 @@
 # Current work
 
+## MCX-08A-R1 phase 2 — COMPLETE LOCALLY
+
+The public reconciliation scope and tolerance policy now adopt
+`fintech::domain::FmiAssetClass` from
+`fintech.contracts.fmi-authorization` revision 2. The package requires exact
+installed `trading-contracts` 0.1.1/public revision 1, publishes
+`core-reconciliation` 0.1.2/public revision 4 and retains logical contract
+`core-reconciliation.fmi-reconciliation` revision 1 because reconciliation
+semantics are unchanged. The dependency repair does not create clearing,
+settlement, position, Risk, OMS, matching or transport authority.
+
 ## FMI-03 — COMPLETE LOCALLY
 
 Extend the independent reconciliation owner across venue trade, clearing,
@@ -39,14 +50,14 @@ connection, hosted scale or external operational certification.
 
 ## Next action
 
-The integration owner can now compose public package revision 3 with the
+The integration owner can now compose public package revision 4 with the
 installed FMI lifecycle owners and retain the FMI-03 cross-package receipt.
 Durable journal/checkpoint storage, external provider operation and
 visibility-policy enforcement remain deployment/owner concerns.
 
 ## Verification
 
-- Focused FMI reconciliation test: 1/1 passed.
+- Focused FMI reconciliation compatibility test: 1/1 passed.
 - Full repository suite: 5/5 passed in the one final bounded-task run.
 - Installed package manifest/resource integrity and installed FMI executable:
   passed.

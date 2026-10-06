@@ -23,7 +23,7 @@
     "test_regex": "^fmi_reconciliation$"
   },
   "package": {
-    "version": "0.1.1",
+    "version": "0.1.2",
     "cmake_package": "fintech_core_reconciliation",
     "api_roots": ["core-reconciliation/include/fintech/reconciliation"]
   },

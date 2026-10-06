@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.26)
-project(fintech_core_reconciliation VERSION 0.1.1 LANGUAGES CXX)
+project(fintech_core_reconciliation VERSION 0.1.2 LANGUAGES CXX)
 
 enable_testing()
 include(CMakePackageConfigHelpers)
@@ -9,9 +9,13 @@ if(NOT DEFINED FINTECH_STANDALONE_PACKAGE_PREFIX OR
   message(FATAL_ERROR "core-reconciliation: absolute installed-package prefix is required")
 endif()
 
-find_package(fintech_contracts 0.1.0 CONFIG REQUIRED
+find_package(fintech_contracts 0.1.1 EXACT CONFIG REQUIRED
   PATHS "${FINTECH_STANDALONE_PACKAGE_PREFIX}" NO_DEFAULT_PATH)
 if(NOT fintech_contracts_PACKAGE_ID STREQUAL "trading-contracts" OR
+   NOT fintech_contracts_VERSION STREQUAL "0.1.1" OR
+   NOT fintech_contracts_CONTRACT_ID STREQUAL
+       "trading-contracts.public-package" OR
+   NOT fintech_contracts_CONTRACT_REVISION STREQUAL "1" OR
    NOT TARGET fintech::contracts)
   message(FATAL_ERROR "core-reconciliation: incompatible trading-contracts package")
 endif()
@@ -90,14 +94,29 @@ install(EXPORT fintech_core_reconciliationTargets
 file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/fintech_core_reconciliationConfig.cmake" [=[
 include(CMakeFindDependencyMacro)
 get_filename_component(_prefix "${CMAKE_CURRENT_LIST_DIR}/../../.." ABSOLUTE)
-find_dependency(fintech_contracts 0.1.0 CONFIG REQUIRED
+find_dependency(fintech_contracts 0.1.1 EXACT CONFIG REQUIRED
   PATHS "${_prefix}" NO_DEFAULT_PATH)
+if(NOT fintech_contracts_PACKAGE_ID STREQUAL "trading-contracts" OR
+   NOT fintech_contracts_VERSION STREQUAL "0.1.1" OR
+   NOT fintech_contracts_CONTRACT_ID STREQUAL "trading-contracts.public-package" OR
+   NOT fintech_contracts_CONTRACT_REVISION STREQUAL "1")
+  set(fintech_core_reconciliation_FOUND FALSE)
+  set(fintech_core_reconciliation_NOT_FOUND_MESSAGE
+    "incompatible trading-contracts package identity")
+  return()
+endif()
 find_dependency(fintech_platform_sdk 0.1.0 CONFIG REQUIRED
   PATHS "${_prefix}" NO_DEFAULT_PATH)
 set(fintech_core_reconciliation_PACKAGE_ID "core-reconciliation")
-set(fintech_core_reconciliation_VERSION "0.1.1")
+set(fintech_core_reconciliation_VERSION "0.1.2")
 set(fintech_core_reconciliation_CONTRACT_ID "core-reconciliation.public-package")
-set(fintech_core_reconciliation_CONTRACT_REVISION "3")
+set(fintech_core_reconciliation_CONTRACT_REVISION "4")
+set(fintech_core_reconciliation_FMI_CONTRACT_ID
+  "core-reconciliation.fmi-reconciliation")
+set(fintech_core_reconciliation_FMI_CONTRACT_REVISION "1")
+set(fintech_core_reconciliation_REQUIRED_FMI_AUTHORIZATION_CONTRACT_ID
+  "fintech.contracts.fmi-authorization")
+set(fintech_core_reconciliation_REQUIRED_FMI_AUTHORIZATION_CONTRACT_REVISION "2")
 set(fintech_core_reconciliation_PACKAGE_MANIFEST
   "${_prefix}/share/fintech/manifests/core-reconciliation.json")
 if(NOT EXISTS "${fintech_core_reconciliation_PACKAGE_MANIFEST}")
@@ -107,8 +126,9 @@ file(READ "${fintech_core_reconciliation_PACKAGE_MANIFEST}" _manifest)
 foreach(_required
     "fintech-package-capability-manifest-v1"
     "\"id\": \"core-reconciliation\""
+    "\"version\": \"0.1.2\""
     "\"id\": \"core-reconciliation.public-package\""
-    "\"revision\": 3")
+    "\"revision\": 4")
   string(FIND "${_manifest}" "${_required}" _found)
   if(_found EQUAL -1)
     message(FATAL_ERROR
@@ -132,7 +152,7 @@ include("${CMAKE_CURRENT_LIST_DIR}/fintech_core_reconciliationTargets.cmake")
 ]=])
 write_basic_package_version_file(
   "${CMAKE_CURRENT_BINARY_DIR}/fintech_core_reconciliationConfigVersion.cmake"
-  VERSION 0.1.1 COMPATIBILITY SameMinorVersion)
+  VERSION 0.1.2 COMPATIBILITY SameMinorVersion)
 install(FILES
   "${CMAKE_CURRENT_BINARY_DIR}/fintech_core_reconciliationConfig.cmake"
   "${CMAKE_CURRENT_BINARY_DIR}/fintech_core_reconciliationConfigVersion.cmake"

@@ -3,12 +3,12 @@
   "package": {
     "id": "core-reconciliation",
     "cmake": "fintech_core_reconciliation",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "exported_target": "fintech::core_reconciliation"
   },
   "contract": {
     "id": "core-reconciliation.public-package",
-    "revision": 3
+    "revision": 4
   },
   "artifacts": [
     {"kind": "executable", "logical_id": "executable:reconciliation_contract_tests", "path": "bin/reconciliation_contract_tests"},
@@ -34,7 +34,7 @@
       "kind": "integration-composition-resource",
       "logical_id": "composition:include/fintech/reconciliation/fmi_reconciliation.hpp",
       "path": "share/fintech/integration-composition/include/fintech/reconciliation/fmi_reconciliation.hpp",
-      "sha256": "188c653ab5c3ca3f8506da819f79551a8b50b0d94c283aafdfa5529d2509a1eb"
+      "sha256": "364174d4eb40e64156fb4fe1b8e3b811a5ea2c70c7e6fe99ed4b71994f06d9bb"
     },
     {
       "kind": "integration-composition-resource",
@@ -64,7 +64,7 @@
       "kind": "integration-composition-resource",
       "logical_id": "composition:tests/core-reconciliation/fmi_reconciliation_tests.cpp",
       "path": "share/fintech/integration-composition/tests/core-reconciliation/fmi_reconciliation_tests.cpp",
-      "sha256": "636e11aba5f8bf273d77631fd727066f381e11e6b3ecceae3866d99adce276d2"
+      "sha256": "febb0eac247376b9c14bd2b6e10c4ae9cd00250c66e0be581558c44b5b5a3319"
     },
     {
       "kind": "integration-composition-resource",
