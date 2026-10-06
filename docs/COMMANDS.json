@@ -16,6 +16,7 @@
     "focused_test": "ctest --test-dir build --output-on-failure -R '^fmi_partner_operations$'",
     "full_test": "ctest --test-dir build --output-on-failure",
     "install": "cmake --install build --prefix /absolute/package-prefix",
+    "installed_fmi_partner_operations_auxiliary": "/absolute/package-prefix/bin/core_reconciliation_fmi_partner_operations_tests",
     "owned_default_tests": "ctest --test-dir build --output-on-failure -R '^(reconciliation_contract|reconciliation_owner|reconciliation_recovery|reconciliation_causal_support|fmi_reconciliation|fmi_partner_operations)$'"
   },
   "focused_ci": {

@@ -70,6 +70,8 @@ add_executable(fmi_partner_operations_tests
   tests/fmi_partner_operations_tests.cpp)
 target_link_libraries(fmi_partner_operations_tests
   PRIVATE fintech_core_reconciliation)
+set_target_properties(fmi_partner_operations_tests PROPERTIES
+  OUTPUT_NAME core_reconciliation_fmi_partner_operations_tests)
 add_test(NAME fmi_partner_operations COMMAND fmi_partner_operations_tests)
 
 install(TARGETS fintech_core_reconciliation EXPORT fintech_core_reconciliationTargets)
@@ -186,7 +188,7 @@ foreach(_required_path
     "${_prefix}/include/fintech/reconciliation/owner.hpp"
     "${_prefix}/bin/reconciliation_causal_support_tests"
     "${_prefix}/bin/fmi_reconciliation_tests"
-    "${_prefix}/bin/fmi_partner_operations_tests")
+    "${_prefix}/bin/core_reconciliation_fmi_partner_operations_tests")
   if(NOT EXISTS "${_required_path}")
     message(FATAL_ERROR
       "core-reconciliation: required installed artifact is missing: ${_required_path}")

@@ -47,3 +47,7 @@ retains `core-reconciliation.fmi-reconciliation` revision 1 while adding
 `trading-contracts` 0.1.1/public revision 1 with
 `fintech.contracts.fmi-authorization` revision 2 and
 `fintech.contracts.fmi-partner-operations` revision 1.
+The installed FMI partner-operations qualification auxiliary is named
+`core_reconciliation_fmi_partner_operations_tests`, keeping it distinct from
+the neutral contracts package's own auxiliary without changing either public
+contract.

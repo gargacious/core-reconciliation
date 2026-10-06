@@ -1,5 +1,18 @@
 # Current work
 
+## FMI-OPS-01S-P2-R1 — COMPLETE LOCALLY
+
+Remove the combined-prefix collision with the neutral contracts package by
+publishing the reconciliation-owned FMI partner-operations test auxiliary
+under a unique installed executable name. Preserve package 0.1.3/public
+revision 5, both logical contract revisions, all public headers and the
+`fintech::core_reconciliation` target. This correction changes packaging
+identity only and adds no reconciliation, authorization or restart authority.
+The focused packaging test passed 1/1, the single final leaf suite passed 6/6,
+and one final install passed shared-prefix manifest collision validation, the
+uniquely named installed auxiliary and a minimal installed exported-target
+consumer. Retained Linux qualification remains pending.
+
 ## FMI-OPS-01S-P2 — COMPLETE LOCALLY
 
 Package 0.1.3/public revision 5 consumes the installed neutral
