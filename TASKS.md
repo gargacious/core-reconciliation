@@ -1,5 +1,24 @@
 # Current work
 
+## FMI-OPS-01S-P2 — COMPLETE LOCALLY
+
+Package 0.1.3/public revision 5 consumes the installed neutral
+`fintech.contracts.fmi-partner-operations` revision 1 and adds
+`core-reconciliation.fmi-partner-operations` revision 1. The authoritative
+bounded owner publishes stable scope/evidence/source-completeness,
+break/case and resolution-audit pages. Governed propose, approve and escalate
+admission binds the exact case version, opening evidence digest, current
+authorization decision/generation, payload and approval reference. Exact retry
+is idempotent; expiry, revocation, stale generation/version, conflicting
+idempotency and maker/checker violations fail closed without changing retained
+economic evidence.
+
+Identity validation, client API policy, clearing state and source-owner
+economic truth remain external. This task adds no snapshot/restore contract;
+destroyed/reconstructed reconciliation-owner equivalence remains explicitly
+NOT QUALIFIED. The existing FMI reconciliation logical contract remains
+revision 1 because its economic reconciliation semantics are unchanged.
+
 ## MCX-08A-R1 phase 2 — COMPLETE LOCALLY
 
 The public reconciliation scope and tolerance policy now adopt
@@ -50,14 +69,15 @@ connection, hosted scale or external operational certification.
 
 ## Next action
 
-The integration owner can now compose public package revision 4 with the
-installed FMI lifecycle owners and retain the FMI-03 cross-package receipt.
-Durable journal/checkpoint storage, external provider operation and
-visibility-policy enforcement remain deployment/owner concerns.
+The integration owner can compose public package revision 5 with the neutral
+partner-operations contract and the other FMI owners for FMI-OPS-01S-Q.
+The parallel P1 and P3 provider children must also complete first. Durable
+journal/checkpoint storage, destroyed-owner restart, external provider
+operation and visibility-policy enforcement remain outside this leaf task.
 
 ## Verification
 
-- Focused FMI reconciliation compatibility test: 1/1 passed.
-- Full repository suite: 5/5 passed in the one final bounded-task run.
-- Installed package manifest/resource integrity and installed FMI executable:
-  passed.
+- Focused FMI partner-operations test: 1/1 passed.
+- Full repository suite: 6/6 passed in the one final bounded-task run.
+- Installed package manifest/resource integrity, installed qualification
+  executable and minimal exported-target consumer: passed.

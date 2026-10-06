@@ -30,7 +30,20 @@ FMI scope and tolerance records use the authorization contract's
 `FmiAssetClass`; the distinct static-instrument-metadata `AssetClass` is not
 redeclared or reinterpreted here.
 
-Package 0.1.2 publishes `core-reconciliation.public-package` revision 4 and
-retains `core-reconciliation.fmi-reconciliation` revision 1. It requires
+The partner-operations surface publishes bounded stable pages over exact
+reconciliation scope, evidence custody, independent source completeness,
+breaks, cases and resolution audit. Governed propose, approve and escalation
+commands consume the neutral partner-operations command contract and retain
+the current authorization decision/generation plus payload-bound approval
+reference. Expiry, revocation, stale generation/version, conflicting
+idempotency and evidence mismatch fail closed before case mutation. Resolution
+continues to affect only the case; source-owned economic evidence is never
+rewritten. No durable owner snapshot/restore is published, so
+destroyed/reconstructed reconciliation-owner equivalence is not qualified.
+
+Package 0.1.3 publishes `core-reconciliation.public-package` revision 5 and
+retains `core-reconciliation.fmi-reconciliation` revision 1 while adding
+`core-reconciliation.fmi-partner-operations` revision 1. It requires
 `trading-contracts` 0.1.1/public revision 1 with
-`fintech.contracts.fmi-authorization` revision 2.
+`fintech.contracts.fmi-authorization` revision 2 and
+`fintech.contracts.fmi-partner-operations` revision 1.

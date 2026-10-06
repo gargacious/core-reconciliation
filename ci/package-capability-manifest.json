@@ -3,17 +3,30 @@
   "package": {
     "id": "core-reconciliation",
     "cmake": "fintech_core_reconciliation",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "exported_target": "fintech::core_reconciliation"
   },
   "contract": {
     "id": "core-reconciliation.public-package",
-    "revision": 4
+    "revision": 5
   },
+  "logical_contracts": [
+    {
+      "id": "core-reconciliation.fmi-reconciliation",
+      "revision": 1,
+      "owner": "core-reconciliation"
+    },
+    {
+      "id": "core-reconciliation.fmi-partner-operations",
+      "revision": 1,
+      "owner": "core-reconciliation"
+    }
+  ],
   "artifacts": [
     {"kind": "executable", "logical_id": "executable:reconciliation_contract_tests", "path": "bin/reconciliation_contract_tests"},
     {"kind": "executable", "logical_id": "executable:reconciliation_causal_support_tests", "path": "bin/reconciliation_causal_support_tests"},
     {"kind": "executable", "logical_id": "executable:fmi_reconciliation_tests", "path": "bin/fmi_reconciliation_tests"},
+    {"kind": "executable", "logical_id": "executable:fmi_partner_operations_tests", "path": "bin/fmi_partner_operations_tests"},
     {"kind": "executable", "logical_id": "executable:reconciliation_owner_tests", "path": "bin/reconciliation_owner_tests"},
     {"kind": "executable", "logical_id": "executable:reconciliation_recovery_tests", "path": "bin/reconciliation_recovery_tests"}
   ],
@@ -44,6 +57,18 @@
     },
     {
       "kind": "integration-composition-resource",
+      "logical_id": "composition:include/fintech/reconciliation/fmi_partner_operations.hpp",
+      "path": "share/fintech/integration-composition/include/fintech/reconciliation/fmi_partner_operations.hpp",
+      "sha256": "18860cc817d2589f2ff4fa3f2385c3a13128d3bc9d0f6d6d701d0b7c8586db7e"
+    },
+    {
+      "kind": "integration-composition-resource",
+      "logical_id": "composition:include/fintech/reconciliation/fmi_partner_operations_owner.hpp",
+      "path": "share/fintech/integration-composition/include/fintech/reconciliation/fmi_partner_operations_owner.hpp",
+      "sha256": "9e07d72ed90fb6abb2e4df2709f291eaeb32fe32a2a4d24ee9cccf3ab5bdd946"
+    },
+    {
+      "kind": "integration-composition-resource",
       "logical_id": "composition:include/fintech/reconciliation/owner.hpp",
       "path": "share/fintech/integration-composition/include/fintech/reconciliation/owner.hpp",
       "sha256": "f91594e4b83395ed46549b9891453c5f7f38d270c19553ea09c1c71ce4cdd200"
@@ -65,6 +90,12 @@
       "logical_id": "composition:tests/core-reconciliation/fmi_reconciliation_tests.cpp",
       "path": "share/fintech/integration-composition/tests/core-reconciliation/fmi_reconciliation_tests.cpp",
       "sha256": "febb0eac247376b9c14bd2b6e10c4ae9cd00250c66e0be581558c44b5b5a3319"
+    },
+    {
+      "kind": "integration-composition-resource",
+      "logical_id": "composition:tests/core-reconciliation/fmi_partner_operations_tests.cpp",
+      "path": "share/fintech/integration-composition/tests/core-reconciliation/fmi_partner_operations_tests.cpp",
+      "sha256": "afe818315d41839a6bea0bc9508b937f018bb40a058fc874b45a03b63352407f"
     },
     {
       "kind": "integration-composition-resource",
