@@ -18,3 +18,11 @@ offset, time, privacy class and payload digest. A completed query means only
 that the retained metadata search completed; it is never an execution, trade,
 position, settlement or reconciliation assertion. Principal authorization is
 the responsibility of the upstream visibility-policy owner.
+
+The FMI reconciliation contract adds a separate, application-neutral view over
+venue trade, clearing, obligation, position, CSD, custodian, settlement-bank
+cash and client/broker evidence. Every observation retains its source owner,
+generation, sequence domain, journal position, authorization and payload
+digest. Exact provider/asset/currency/jurisdiction tolerance policy is required.
+A missing or inconsistent fact opens a versioned exception case; maker/checker
+resolution governs that case and cannot edit any source owner's economic fact.

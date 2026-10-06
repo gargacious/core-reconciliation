@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.26)
-project(fintech_core_reconciliation VERSION 0.1.0 LANGUAGES CXX)
+project(fintech_core_reconciliation VERSION 0.1.1 LANGUAGES CXX)
 
 enable_testing()
 include(CMakePackageConfigHelpers)
@@ -52,22 +52,32 @@ target_link_libraries(reconciliation_causal_support_tests
 add_test(NAME reconciliation_causal_support
   COMMAND reconciliation_causal_support_tests)
 
+add_executable(fmi_reconciliation_tests
+  tests/fmi_reconciliation_tests.cpp)
+target_link_libraries(fmi_reconciliation_tests
+  PRIVATE fintech_core_reconciliation)
+add_test(NAME fmi_reconciliation COMMAND fmi_reconciliation_tests)
+
 install(TARGETS fintech_core_reconciliation EXPORT fintech_core_reconciliationTargets)
 install(DIRECTORY include/ DESTINATION include)
 install(FILES
   include/fintech/reconciliation/contracts.hpp
   include/fintech/reconciliation/causal_support.hpp
+  include/fintech/reconciliation/fmi_reconciliation.hpp
+  include/fintech/reconciliation/fmi_reconciliation_owner.hpp
   include/fintech/reconciliation/owner.hpp
   DESTINATION share/fintech/integration-composition/include/fintech/reconciliation)
 install(FILES
   tests/reconciliation_contract_tests.cpp
   tests/reconciliation_causal_support_tests.cpp
+  tests/fmi_reconciliation_tests.cpp
   tests/reconciliation_owner_tests.cpp
   tests/reconciliation_recovery_tests.cpp
   DESTINATION share/fintech/integration-composition/tests/core-reconciliation)
 install(TARGETS
   reconciliation_contract_tests
   reconciliation_causal_support_tests
+  fmi_reconciliation_tests
   reconciliation_owner_tests
   reconciliation_recovery_tests
   RUNTIME DESTINATION bin)
@@ -85,9 +95,9 @@ find_dependency(fintech_contracts 0.1.0 CONFIG REQUIRED
 find_dependency(fintech_platform_sdk 0.1.0 CONFIG REQUIRED
   PATHS "${_prefix}" NO_DEFAULT_PATH)
 set(fintech_core_reconciliation_PACKAGE_ID "core-reconciliation")
-set(fintech_core_reconciliation_VERSION "0.1.0")
+set(fintech_core_reconciliation_VERSION "0.1.1")
 set(fintech_core_reconciliation_CONTRACT_ID "core-reconciliation.public-package")
-set(fintech_core_reconciliation_CONTRACT_REVISION "2")
+set(fintech_core_reconciliation_CONTRACT_REVISION "3")
 set(fintech_core_reconciliation_PACKAGE_MANIFEST
   "${_prefix}/share/fintech/manifests/core-reconciliation.json")
 if(NOT EXISTS "${fintech_core_reconciliation_PACKAGE_MANIFEST}")
@@ -98,7 +108,7 @@ foreach(_required
     "fintech-package-capability-manifest-v1"
     "\"id\": \"core-reconciliation\""
     "\"id\": \"core-reconciliation.public-package\""
-    "\"revision\": 2")
+    "\"revision\": 3")
   string(FIND "${_manifest}" "${_required}" _found)
   if(_found EQUAL -1)
     message(FATAL_ERROR
@@ -108,8 +118,11 @@ endforeach()
 foreach(_required_path
     "${_prefix}/include/fintech/reconciliation/contracts.hpp"
     "${_prefix}/include/fintech/reconciliation/causal_support.hpp"
+    "${_prefix}/include/fintech/reconciliation/fmi_reconciliation.hpp"
+    "${_prefix}/include/fintech/reconciliation/fmi_reconciliation_owner.hpp"
     "${_prefix}/include/fintech/reconciliation/owner.hpp"
-    "${_prefix}/bin/reconciliation_causal_support_tests")
+    "${_prefix}/bin/reconciliation_causal_support_tests"
+    "${_prefix}/bin/fmi_reconciliation_tests")
   if(NOT EXISTS "${_required_path}")
     message(FATAL_ERROR
       "core-reconciliation: required installed artifact is missing: ${_required_path}")
@@ -119,7 +132,7 @@ include("${CMAKE_CURRENT_LIST_DIR}/fintech_core_reconciliationTargets.cmake")
 ]=])
 write_basic_package_version_file(
   "${CMAKE_CURRENT_BINARY_DIR}/fintech_core_reconciliationConfigVersion.cmake"
-  VERSION 0.1.0 COMPATIBILITY SameMinorVersion)
+  VERSION 0.1.1 COMPATIBILITY SameMinorVersion)
 install(FILES
   "${CMAKE_CURRENT_BINARY_DIR}/fintech_core_reconciliationConfig.cmake"
   "${CMAKE_CURRENT_BINARY_DIR}/fintech_core_reconciliationConfigVersion.cmake"
