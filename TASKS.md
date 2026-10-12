@@ -1,3 +1,14 @@
+# CRYPTO-01-D4-CONTRACTS-ADOPTION-R1 - active isolated dependency prerequisite
+
+Supports CRYPTO-01-D4-FUNDING-CONTRACT and LEDGER-02E-FUNDING-CAPTURE-ISSUER.
+Require actual installed additive Contracts0.1.2/public1 in source and exported
+package checks so actual Position-backed Ledger fixture can discover genuine
+public Reconciliation targets. Preserve package0.1.3/public5, all public header
+bytes and economic/API semantics. Canonical0.1.1 dependencies/master/install
+stay unchanged; private GNU13 configure/build, one6-case leaf suite, install and
+public exported Position/Ledger admission only. No retained Linux qualification
+or production/hosted/common-owner claims. Register before implementation.
+
 # Current work
 
 ## FMI-OPS-01S-P2-R1 — COMPLETE LOCALLY

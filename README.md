@@ -51,3 +51,10 @@ The installed FMI partner-operations qualification auxiliary is named
 `core_reconciliation_fmi_partner_operations_tests`, keeping it distinct from
 the neutral contracts package's own auxiliary without changing either public
 contract.
+
+Private dependency prerequisite CRYPTO-01-D4-CONTRACTS-ADOPTION-R1 requires
+Contracts0.1.2/public1 in both source and exported CMake admission; unchanged
+scalar/logical contracts preserve all Reconciliation API/economic semantics.
+This source branch supports LEDGER-02E-FUNDING-CAPTURE-ISSUER only in a private
+prefix until coordinated platform exact-version adoption. Package0.1.3/public5
+and existing public header bytes are retained; canonical master/prefix stayput.
