@@ -1,12 +1,23 @@
-# LEDGER-02F-CONSUMPTION-AWARE-FUNDING-R1 / LEDGER-03B-CONSUME-ACK-R1 - active private dependency adoption, 2026-10-13
+# LEDGER-02F-CONSUMPTION-AWARE-FUNDING-R1 / LEDGER-03B-CONSUME-ACK-R1 - COMPLETE ISOLATED DEPENDENCY ADOPTION, 2026-10-13
 
-Adopt actual additive Contracts0.1.3 EXACT coherently in owned source/export/
-Conan metadata so genuine exported Position can be admitted into the private
+Adopt actual additive Contracts0.1.3 EXACT coherently in owned source/export
+metadata (this owner has no Conan recipe) so genuine exported Position can be admitted into the private
 Ledger consumption-aware lane. No economic behavior/public header/logical
 revision change, no fake installed config rewrite or header-only bypass.
 Keep package0.1.3/public5, canonical source/master/prefix untouched. Focused
 changed dependency/package checks +first-pass; unchanged behavioral suite remains
 historical, pending explicit publication. No retained evidence or remote push.
+
+Implementation74a90651de53a363a341b301bb0b0281fa5428cf preserves all7 public
+headers and package0.1.3/public5. Original exported exactContracts0.1.2 rejection
+was recorded405fa0978e414ef28e6c6b644d1a3d3d; genuine private Position dependency
+admission passed7551c139fd5a4d75bfe43e32ee39a4cf after actual owned install.
+All6 required executable targets compiled for install, not a repeated old
+behavioral suite. All6 installed executable pairs and declared resource/header
+bytes match. Planned install receiptac68a30d446a4956bca420ac65f6081b records
+input changes with commandexit0 and stays non-reusable; current source/export
+custody is separately verified. Private Ledger installed acceptance passed2/2;
+no fake package rewrite/header-only bypass/canonical mutation was used.
 
 # CRYPTO-01-D4-CONTRACTS-ADOPTION-R1 - COMPLETE ISOLATED DEPENDENCY PREREQUISITE
 
