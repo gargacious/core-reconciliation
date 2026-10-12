@@ -58,3 +58,5 @@ scalar/logical contracts preserve all Reconciliation API/economic semantics.
 This source branch supports LEDGER-02E-FUNDING-CAPTURE-ISSUER only in a private
 prefix until coordinated platform exact-version adoption. Package0.1.3/public5
 and existing public header bytes are retained; canonical master/prefix stayput.
+
+Private LEDGER-02F/03B successor uses actual additive Contracts0.1.3 EXACT export; package0.1.3/public5 and public headers unchanged. Canonical prefix/master untouched.

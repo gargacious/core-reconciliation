@@ -1,3 +1,13 @@
+# LEDGER-02F-CONSUMPTION-AWARE-FUNDING-R1 / LEDGER-03B-CONSUME-ACK-R1 - active private dependency adoption, 2026-10-13
+
+Adopt actual additive Contracts0.1.3 EXACT coherently in owned source/export/
+Conan metadata so genuine exported Position can be admitted into the private
+Ledger consumption-aware lane. No economic behavior/public header/logical
+revision change, no fake installed config rewrite or header-only bypass.
+Keep package0.1.3/public5, canonical source/master/prefix untouched. Focused
+changed dependency/package checks +first-pass; unchanged behavioral suite remains
+historical, pending explicit publication. No retained evidence or remote push.
+
 # CRYPTO-01-D4-CONTRACTS-ADOPTION-R1 - COMPLETE ISOLATED DEPENDENCY PREREQUISITE
 
 Supports CRYPTO-01-D4-FUNDING-CONTRACT and LEDGER-02E-FUNDING-CAPTURE-ISSUER.
