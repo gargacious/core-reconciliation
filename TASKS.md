@@ -1,4 +1,4 @@
-# CRYPTO-01-D4-CONTRACTS-ADOPTION-R1 - active isolated dependency prerequisite
+# CRYPTO-01-D4-CONTRACTS-ADOPTION-R1 - COMPLETE ISOLATED DEPENDENCY PREREQUISITE
 
 Supports CRYPTO-01-D4-FUNDING-CONTRACT and LEDGER-02E-FUNDING-CAPTURE-ISSUER.
 Require actual installed additive Contracts0.1.2/public1 in source and exported
@@ -8,6 +8,15 @@ bytes and economic/API semantics. Canonical0.1.1 dependencies/master/install
 stay unchanged; private GNU13 configure/build, one6-case leaf suite, install and
 public exported Position/Ledger admission only. No retained Linux qualification
 or production/hosted/common-owner claims. Register before implementation.
+
+Actual original exported Position->Reconciliation exact0.1.1 dependency
+rejection was recorded before adoption (receipt9d81cc3498e84ecea049f71424a40528).
+Private GNU13 build and single final suite passed6/6 at unchanged API/header
+bytes. Genuine exported Position/Ledger admission and installed owner fixture
+passed after actual owned reconfigure/install. All7 public headers and six
+built/installed executable pairs match the selected private prefix; manifest
+custodyfa4d0e582e8b48449f67a21ca7bd516c. This adds no reconciliation economics
+or product completion count; retained evidence/canonical adoption staypending.
 
 # Current work
 
