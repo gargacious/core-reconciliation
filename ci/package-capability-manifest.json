@@ -3,7 +3,7 @@
   "package": {
     "id": "core-reconciliation",
     "cmake": "fintech_core_reconciliation",
-    "version": "0.1.3",
+    "version": "0.1.4",
     "exported_target": "fintech::core_reconciliation"
   },
   "contract": {
@@ -23,12 +23,36 @@
     }
   ],
   "artifacts": [
-    {"kind": "executable", "logical_id": "executable:reconciliation_contract_tests", "path": "bin/reconciliation_contract_tests"},
-    {"kind": "executable", "logical_id": "executable:reconciliation_causal_support_tests", "path": "bin/reconciliation_causal_support_tests"},
-    {"kind": "executable", "logical_id": "executable:fmi_reconciliation_tests", "path": "bin/fmi_reconciliation_tests"},
-    {"kind": "executable", "logical_id": "executable:core_reconciliation_fmi_partner_operations_tests", "path": "bin/core_reconciliation_fmi_partner_operations_tests"},
-    {"kind": "executable", "logical_id": "executable:reconciliation_owner_tests", "path": "bin/reconciliation_owner_tests"},
-    {"kind": "executable", "logical_id": "executable:reconciliation_recovery_tests", "path": "bin/reconciliation_recovery_tests"}
+    {
+      "kind": "executable",
+      "logical_id": "executable:reconciliation_contract_tests",
+      "path": "bin/reconciliation_contract_tests"
+    },
+    {
+      "kind": "executable",
+      "logical_id": "executable:reconciliation_causal_support_tests",
+      "path": "bin/reconciliation_causal_support_tests"
+    },
+    {
+      "kind": "executable",
+      "logical_id": "executable:fmi_reconciliation_tests",
+      "path": "bin/fmi_reconciliation_tests"
+    },
+    {
+      "kind": "executable",
+      "logical_id": "executable:core_reconciliation_fmi_partner_operations_tests",
+      "path": "bin/core_reconciliation_fmi_partner_operations_tests"
+    },
+    {
+      "kind": "executable",
+      "logical_id": "executable:reconciliation_owner_tests",
+      "path": "bin/reconciliation_owner_tests"
+    },
+    {
+      "kind": "executable",
+      "logical_id": "executable:reconciliation_recovery_tests",
+      "path": "bin/reconciliation_recovery_tests"
+    }
   ],
   "resources": [
     {

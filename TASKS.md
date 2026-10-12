@@ -1,3 +1,13 @@
+# CRYPTO-01-D4-CONSUMPTION-ADOPTION - active private release identity correction
+
+Package0.1.4/public5 distinguishes the exact Contracts0.1.3 export from published
+Reconciliation0.1.3 with exactContracts0.1.1. Public headers/algorithms/logical
+revisions stay unchanged. Preserve e655d03 prior private package1.3 execution
+and archives separately; no new behavior claim. Canonical source/gitlink/prefix/
+master remain unchanged. Focused actual private package/export custody and
+first-pass only; retained/full qualification on explicit request. No Conan recipe
+exists in this owner. Register before implementation; exact task ID commits.
+
 # LEDGER-02F-CONSUMPTION-AWARE-FUNDING-R1 / LEDGER-03B-CONSUME-ACK-R1 - COMPLETE ISOLATED DEPENDENCY ADOPTION, 2026-10-13
 
 Adopt actual additive Contracts0.1.3 EXACT coherently in owned source/export

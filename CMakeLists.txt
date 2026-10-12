@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.26)
-project(fintech_core_reconciliation VERSION 0.1.3 LANGUAGES CXX)
+project(fintech_core_reconciliation VERSION 0.1.4 LANGUAGES CXX)
 
 enable_testing()
 include(CMakePackageConfigHelpers)
@@ -127,7 +127,7 @@ endif()
 find_dependency(fintech_platform_sdk 0.1.0 CONFIG REQUIRED
   PATHS "${_prefix}" NO_DEFAULT_PATH)
 set(fintech_core_reconciliation_PACKAGE_ID "core-reconciliation")
-set(fintech_core_reconciliation_VERSION "0.1.3")
+set(fintech_core_reconciliation_VERSION "0.1.4")
 set(fintech_core_reconciliation_CONTRACT_ID "core-reconciliation.public-package")
 set(fintech_core_reconciliation_CONTRACT_REVISION "5")
 set(fintech_core_reconciliation_FMI_CONTRACT_ID
@@ -148,7 +148,7 @@ file(READ "${fintech_core_reconciliation_PACKAGE_MANIFEST}" _manifest)
 foreach(_required
     "fintech-package-capability-manifest-v1"
     "\"id\": \"core-reconciliation\""
-    "\"version\": \"0.1.3\""
+    "\"version\": \"0.1.4\""
     "\"id\": \"core-reconciliation.public-package\""
     "\"revision\": 5"
     "\"id\": \"core-reconciliation.fmi-partner-operations\"")
@@ -198,7 +198,7 @@ include("${CMAKE_CURRENT_LIST_DIR}/fintech_core_reconciliationTargets.cmake")
 ]=])
 write_basic_package_version_file(
   "${CMAKE_CURRENT_BINARY_DIR}/fintech_core_reconciliationConfigVersion.cmake"
-  VERSION 0.1.3 COMPATIBILITY SameMinorVersion)
+  VERSION 0.1.4 COMPATIBILITY SameMinorVersion)
 install(FILES
   "${CMAKE_CURRENT_BINARY_DIR}/fintech_core_reconciliationConfig.cmake"
   "${CMAKE_CURRENT_BINARY_DIR}/fintech_core_reconciliationConfigVersion.cmake"
