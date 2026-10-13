@@ -1,4 +1,16 @@
-# CRYPTO-01-D4-CONSUMPTION-ADOPTION - active private release identity correction
+# CRYPTO-01-D4-CONSUMPTION-ADOPTION - completed private release identity prerequisite
+
+Private GNU13 Release CMake package install, declared manifest/resource custody,
+built/installed executable pairs and actual exported-target consumer passed.
+Checked source e276dd4770cb70d351a4151cc1bc5697315c9f69; consumer first-pass 650cc9c74b1946a897c662d04e763c05.
+Public/logical revisions and owner algorithm bytes are preserved. Acceptance
+bytes are retained in first-pass-eight-package-adoption.tar (SHA256
+fd9fcecfe7a3601810f887eece361ab5aaa2c4c98dde70f22cc37fb48a8cd6dd).
+This completes only the private dependency/package prerequisite; canonical
+source/pins/prefix/master, whole-platform qualification and publication remain
+pending coordinated adoption. No retained producer/full old behavior suite was
+run. Conan resolution/build remains unqualified (no recipe where absent).
+
 
 Package0.1.4/public5 distinguishes the exact Contracts0.1.3 export from published
 Reconciliation0.1.3 with exactContracts0.1.1. Public headers/algorithms/logical
