@@ -12,7 +12,7 @@ endif()
 find_package(fintech_contracts 0.1.4 EXACT CONFIG REQUIRED
   PATHS "${FINTECH_STANDALONE_PACKAGE_PREFIX}" NO_DEFAULT_PATH)
 if(NOT fintech_contracts_PACKAGE_ID STREQUAL "trading-contracts" OR
-   NOT fintech_contracts_VERSION STREQUAL "0.1.3" OR
+   NOT fintech_contracts_VERSION STREQUAL "0.1.4" OR
    NOT fintech_contracts_CONTRACT_ID STREQUAL
        "trading-contracts.public-package" OR
    NOT fintech_contracts_CONTRACT_REVISION STREQUAL "1" OR
@@ -113,7 +113,7 @@ get_filename_component(_prefix "${CMAKE_CURRENT_LIST_DIR}/../../.." ABSOLUTE)
 find_dependency(fintech_contracts 0.1.4 EXACT CONFIG REQUIRED
   PATHS "${_prefix}" NO_DEFAULT_PATH)
 if(NOT fintech_contracts_PACKAGE_ID STREQUAL "trading-contracts" OR
-   NOT fintech_contracts_VERSION STREQUAL "0.1.3" OR
+   NOT fintech_contracts_VERSION STREQUAL "0.1.4" OR
    NOT fintech_contracts_CONTRACT_ID STREQUAL "trading-contracts.public-package" OR
    NOT fintech_contracts_CONTRACT_REVISION STREQUAL "1" OR
    NOT fintech_contracts_FMI_PARTNER_OPERATIONS_CONTRACT_ID STREQUAL
